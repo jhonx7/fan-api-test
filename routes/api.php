@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EpresenceController;
+use App\Http\Controllers\TestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +17,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
-    return $request->user();
+
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/register', [AuthController::class, 'register'])->name('register');
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/presences', [EpresenceController::class, 'index'])->name('presences.index');
+    Route::post('/presences', [EpresenceController::class, 'store'])->name('presences.store');
+    Route::patch('/presences', [EpresenceController::class, 'approval'])->name('presences.approval');
 });
+
+Route::post('/pairs', [TestController::class, 'pairs'])->name('pairs');
+Route::post('/word', [TestController::class, 'word'])->name('word');

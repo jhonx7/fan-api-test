@@ -1,0 +1,399 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Laravel PT FAN TEST Documentation",
+        "description": "L5 Swagger OpenApi description",
+        "contact": {
+            "email": "admin@admin.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Login user",
+                "operationId": "a3b306d14572d1f4bd6c064b3233e7b8",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "email": "user1@test.com",
+                                    "password": "password"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "result": {
+                                        "summary": "An result object.",
+                                        "value": {
+                                            "message": "Berhasil Login",
+                                            "data": {
+                                                "user": {
+                                                    "id": 1,
+                                                    "name": "Joe Doe",
+                                                    "npp": 111111,
+                                                    "npp_supervisor": 222222,
+                                                    "email": "test@test.com",
+                                                    "updated_at": "2023-08-01T06:42:15.000000Z",
+                                                    "created_at": "2023-08-01T06:42:15.000000Z"
+                                                },
+                                                "token": "1|KYTyWragQxSyYSx7NOgZ9FsLseJqDc3DMK5w7j1j"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Register user",
+                "operationId": "8a56853624e025573120a09a4c75d468",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "npp_supervisor": {
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Joe Doe",
+                                    "email": "test@test.com",
+                                    "password": "Password",
+                                    "npp_supervisor": null
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "result": {
+                                        "summary": "An result object.",
+                                        "value": {
+                                            "message": "Berhasil Mendaftar!",
+                                            "data": {
+                                                "user": {
+                                                    "id": 1,
+                                                    "name": "Joe Doe",
+                                                    "npp": 111111,
+                                                    "npp_supervisor": 222222,
+                                                    "email": "test@test.com",
+                                                    "updated_at": "2023-08-01T06:42:15.000000Z",
+                                                    "created_at": "2023-08-01T06:42:15.000000Z"
+                                                },
+                                                "token": "1|KYTyWragQxSyYSx7NOgZ9FsLseJqDc3DMK5w7j1j"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/presences": {
+            "get": {
+                "tags": [
+                    "Presences"
+                ],
+                "summary": "Show User Presences By Month",
+                "operationId": "e470edab67f271543925470d11170686",
+                "parameters": [
+                    {
+                        "name": "month",
+                        "in": "query",
+                        "description": "Bulan",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "examples": {
+                            "Agustus 2023": {
+                                "summary": "Month",
+                                "value": "08"
+                            }
+                        }
+                    },
+                    {
+                        "name": "year",
+                        "in": "query",
+                        "description": "Tahun",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "examples": {
+                            "Agustus 2023": {
+                                "summary": "Year",
+                                "value": "2023"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Presences"
+                ],
+                "summary": "User Presence",
+                "operationId": "79636d80af4c111df6622c50bb77bb69",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "type": {
+                                        "type": "string"
+                                    },
+                                    "waktu": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "type": "IN",
+                                    "waktu": "2023-08-08 08:00:00"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "result": {
+                                        "summary": "An result object.",
+                                        "value": {
+                                            "message": "Berhasil Absen",
+                                            "data": []
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "Presences"
+                ],
+                "summary": "User Presence Approval by Supervisor",
+                "operationId": "e08ad9994bce752f47bec7c072707a91",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "epresence_id": {
+                                        "type": "number"
+                                    },
+                                    "approve": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "epresence_id": 1,
+                                    "approve": true
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "result": {
+                                        "summary": "An result object.",
+                                        "value": {
+                                            "message": "Berhasil mengubah data",
+                                            "data": []
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/pairs": {
+            "post": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Count Number Pairs of Array",
+                "operationId": "c0a031ce22260f0191bfbbbf4465a129",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "data": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "data": "[5, 7, 7, 9, 10, 4, 5, 10, 6, 5]"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/word": {
+            "post": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Count Word of Sentence",
+                "operationId": "390649d112a671641ad84a7ecdf1c686",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "data": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "data": "Kemarin Shopia per[gi ke mall."
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "name": "bearerAuth",
+                "in": "header",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Auth",
+            "description": "API Endpoints of Authentication"
+        },
+        {
+            "name": "Presences",
+            "description": "API Endpoints of Epresences"
+        },
+        {
+            "name": "Test",
+            "description": "API Endpoints of Logic Test"
+        }
+    ]
+}

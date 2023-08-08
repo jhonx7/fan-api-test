@@ -20,6 +20,8 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'npp',
+        'npp_supervisor',
         'password',
     ];
 
@@ -42,4 +44,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function epresences()
+    {
+        return $this->hasMany(Epresence::class);
+    }
+    public function supervisor()
+    {
+        return $this->belongsTo(User::class, 'npp_supervisor', 'npp');
+    }
+    public function karyawan()
+    {
+        return $this->hasMany(User::class, 'npp_supervisor', 'npp');
+    }
 }
