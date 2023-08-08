@@ -13,11 +13,10 @@ Project dibangun menggunakan Framework Laravel versi 10 dengan starter kit Larav
 composer install
 cp .env.example .env // setup database credentials
 php artisan key:generate
-php artisan migrate
+php artisan migrate --seed
 
 # Run your server
 php artisan serve
-
 
 # API Documentation
 php artisan l5-swagger:generate
